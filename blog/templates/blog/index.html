@@ -1,0 +1,38 @@
+{% for post in post_list %}
+  {{ post.title }}<br>
+{% endfor %}
+
+<!-- 関数ビュー -->
+  <!-- 前ページが存在する時のみ前ページへのリンクを表示 -->
+  {% if post_list.has_previous %}
+    <a href="?page={{ post_list.previous_page_number }}">前へ</a>
+  {% endif %}
+  
+  <!-- 現在のページ数 / 全体のページ数 -->
+  <span>
+    {{ post_list.number }} / {{ post_list.paginator.num_pages }}
+  </span>
+  
+  <!-- 次ページが存在する時のみ次ページへのリンクを表示 -->
+  {% if post_list.has_next %}
+    <a href="?page={{ post_list.next_page_number }}">次へ</a>
+  {% endif %}
+
+
+{% comment %}
+  <!-- クラスベースビュー -->
+  <!-- 前ページが存在する時のみ前ページへのリンクを表示 -->
+  {% if page_obj.has_previous %}
+    <a href="?page={{ page_obj.previous_page_number }}">前へ</a>
+  {% endif %}
+  
+  <!-- 現在のページ数 / 全体のページ数 -->
+  <span>
+    {{ page_obj.number }} / {{ page_obj.paginator.num_pages }}
+  </span>
+  
+  <!-- 次ページが存在する時のみ次ページへのリンクを表示 -->
+  {% if page_obj.has_next %}
+    <a href="?page={{ page_obj.next_page_number }}">次へ</a>
+  {% endif %}
+{% endcomment %}
